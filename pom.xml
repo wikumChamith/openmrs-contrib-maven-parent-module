@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.openmrs.module</groupId>
-	<artifactId>base</artifactId>
+	<groupId>org.openmrs.contrib</groupId>
+	<artifactId>maven-parent-module</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Base POM</name>
-	<description>Base POM for any OpenMRS module</description>
+	<name>Module Parent POM</name>
+	<description>Declares parent POM for any OpenMRS module</description>
 	
 	<issueManagement>
 		<system>JIRA</system>
@@ -26,9 +26,9 @@
 	</organization>
 
 	<scm>
-		<connection>scm:git:git@github.com:openmrs/openmrs-module-base.git</connection>
-		<developerConnection>scm:git:git@github.com:openmrs/openmrs-module-base.git</developerConnection>
-		<url>https://github.com/openmrs/openmrs-module-base/</url>
+		<connection>scm:git:git@github.com:openmrs/openmrs-contrib-maven-parent-module.git</connection>
+		<developerConnection>scm:git:git@github.com:openmrs/openmrs-contrib-maven-parent-module.git</developerConnection>
+		<url>https://github.com/openmrs/openmrs-contrib-maven-parent-module</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -49,6 +49,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
 		<openmrs.core.version>1.8.1</openmrs.core.version>
+		<openmrs.core.tools.version>1.10.1</openmrs.core.tools.version>
 
 		<MODULE_ID>${project.parent.artifactId}</MODULE_ID>
 		<MODULE_NAME>${project.parent.name}</MODULE_NAME>
@@ -62,16 +63,12 @@
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
 				<version>${openmrs.core.version}</version>
-				<type>jar</type>
-				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
 				<version>${openmrs.core.version}</version>
-				<type>jar</type>
-				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
@@ -79,8 +76,6 @@
 				<artifactId>openmrs-api</artifactId>
 				<version>${openmrs.core.version}</version>
 				<classifier>tests</classifier>
-				<type>jar</type>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
@@ -88,15 +83,6 @@
 				<artifactId>openmrs-web</artifactId>
 				<version>${openmrs.core.version}</version>
 				<classifier>tests</classifier>
-				<type>jar</type>
-				<scope>test</scope>
-			</dependency>
-			
-			<dependency>
-				<groupId>org.openmrs.tools</groupId>
-				<artifactId>openmrs-tools</artifactId>
-				<version>${openmrs.core.version}</version>
-				<type>jar</type>
 			</dependency>
 
 			<dependency>
@@ -104,7 +90,6 @@
 				<artifactId>openmrs-test</artifactId>
 				<version>${openmrs.core.version}</version>
 				<type>pom</type>
-				<scope>test</scope>
 				<exclusions>
 					<exclusion>
 						<groupId>org.mockito</groupId>
@@ -129,28 +114,42 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.11</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.hamcrest</groupId>
 				<artifactId>hamcrest-core</artifactId>
 				<version>1.3</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.hamcrest</groupId>
 				<artifactId>hamcrest-library</artifactId>
 				<version>1.3</version>
-				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 				<version>1.9.5</version>
-				<scope>test</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-module-junit4</artifactId>
+				<version>1.5</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.powermock</groupId>
+				<artifactId>powermock-api-mockito</artifactId>
+				<version>1.5</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>mockito-all</artifactId>
+						<groupId>org.mockito</groupId>
+					</exclusion>
+				</exclusions>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -159,38 +158,57 @@
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
 			<classifier>tests</classifier>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
 			<type>pom</type>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-core</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
+			<scope>test</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-module-junit4</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.powermock</groupId>
+			<artifactId>powermock-api-mockito</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
@@ -199,24 +217,44 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.txt</include>
+					<include>**/*.properties</include>
+				</includes>
 			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>**/*.xml</exclude>
+					<exclude>**/*.txt</exclude>
+					<exclude>**/*.properties</exclude>
+				</excludes>
+			</resource>
+			
 			<resource>
 				<directory>src/main/webapp</directory>
 				<filtering>true</filtering>
-				<excludes>
-					<exclude>resources</exclude>
-				</excludes>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.txt</include>
+					<include>**/*.properties</include>
+				</includes>
 				<targetPath>web/module</targetPath>
 			</resource>
 			<resource>
 				<directory>src/main/webapp</directory>
 				<filtering>false</filtering>
-				<includes>
-					<include>resources</include>
-				</includes>
+				<excludes>
+					<exclude>**/*.xml</exclude>
+					<exclude>**/*.txt</exclude>
+					<exclude>**/*.properties</exclude>
+				</excludes>
 				<targetPath>web/module</targetPath>
 			</resource>
 		</resources>
+		
 		<testResources>
 			<testResource>
 				<directory>src/test/resources</directory>
@@ -224,6 +262,7 @@
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.txt</include>
+					<include>**/*.properties</include>
 				</includes>
 			</testResource>
 			<testResource>
@@ -232,6 +271,7 @@
 				<excludes>
 					<exclude>**/*.xml</exclude>
 					<exclude>**/*.txt</exclude>
+					<exclude>**/*.properties</exclude>
 				</excludes>
 			</testResource>
 		</testResources>
@@ -308,7 +348,7 @@
 						<dependency>
 							<groupId>org.openmrs.tools</groupId>
 							<artifactId>openmrs-tools</artifactId>
-							<version>${openmrs.core.version}</version>
+							<version>${openmrs.core.tools.version}</version>
 						</dependency>
 					</dependencies>
 				</plugin>
@@ -325,7 +365,7 @@
 					</configuration>
 					<executions>
 						<execution>
-							<phase>validate</phase	>
+							<phase>validate</phase>
 							<goals>
 								<goal>create</goal>
 							</goals>
@@ -333,6 +373,9 @@
 					</executions>
 				</plugin>
 				
+				<!-- Extracting messages and Spring configuration out of the API jar. 
+					 It is needed due to a bug in OpenMRS, which prevents them from loading. 
+					 See https://issues.openmrs.org/browse/TRUNK-3889 -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-dependency-plugin</artifactId>
@@ -345,9 +388,9 @@
 							<phase>generate-resources</phase>
 							<configuration>
 								<includeGroupIds>${project.parent.groupId}</includeGroupIds>
-								<includeArtifactIds>${project.parent.artifactId}-omod</includeArtifactIds>
+								<includeArtifactIds>${project.parent.artifactId}-api,${project.parent.artifactId}-omod,${project.parent.artifactId}-omod-common</includeArtifactIds>
 								<includeScope>compile</includeScope>
-								<includes>**\/*.xml,**\/*.properties</includes>
+								<includes>*.xml,*.properties</includes>
 								<outputDirectory>${project.build.directory}/classes</outputDirectory>
 							</configuration>
 						</execution>
