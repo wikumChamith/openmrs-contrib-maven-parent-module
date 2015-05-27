@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.openmrs.contrib</groupId>
-	<artifactId>maven-parent-module</artifactId>
+	<groupId>org.openmrs.maven.parents</groupId>
+	<artifactId>maven-parent-openmrs-module</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Module Parent POM</name>
+	<name>OpenMRS Module Parent POM</name>
 	<description>Declares parent POM for any OpenMRS module</description>
 	
 	<issueManagement>
@@ -34,9 +34,9 @@
 
 	<distributionManagement>
 		<repository>
-			<id>openmrs-repo-modules</id>
-			<name>Modules</name>
-			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/modules/</url>
+			<id>openmrs-repo-releases</id>
+			<name>OpenMRS Releases</name>
+			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/releases/</url>
 		</repository>
         <snapshotRepository>
             <id>openmrs-repo-snapshots</id>
@@ -48,8 +48,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
-		<openmrs.core.version>1.8.1</openmrs.core.version>
-		<openmrs.core.tools.version>1.10.1</openmrs.core.tools.version>
+		<openmrs.platform.version>1.11.2</openmrs.platform.version>
+		<openmrs.platform.tools.version>1.11.2</openmrs.platform.tools.version>
 
 		<MODULE_ID>${project.parent.artifactId}</MODULE_ID>
 		<MODULE_NAME>${project.parent.name}</MODULE_NAME>
@@ -62,33 +62,33 @@
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
-				<version>${openmrs.core.version}</version>
+				<version>${openmrs.platform.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
-				<version>${openmrs.core.version}</version>
+				<version>${openmrs.platform.version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
-				<version>${openmrs.core.version}</version>
+				<version>${openmrs.platform.version}</version>
 				<classifier>tests</classifier>
 			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
-				<version>${openmrs.core.version}</version>
+				<version>${openmrs.platform.version}</version>
 				<classifier>tests</classifier>
 			</dependency>
 
 			<dependency>
 				<groupId>org.openmrs.test</groupId>
 				<artifactId>openmrs-test</artifactId>
-				<version>${openmrs.core.version}</version>
+				<version>${openmrs.platform.version}</version>
 				<type>pom</type>
 				<exclusions>
 					<exclusion>
@@ -118,7 +118,7 @@
 
 			<dependency>
 				<groupId>org.hamcrest</groupId>
-				<artifactId>hamcrest-core</artifactId>
+				<artifactId>hamcrest-platform</artifactId>
 				<version>1.3</version>
 			</dependency>
 
@@ -130,7 +130,7 @@
 
 			<dependency>
 				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
+				<artifactId>mockito-platform</artifactId>
 				<version>1.9.5</version>
 			</dependency>
 			
@@ -183,7 +183,7 @@
 		
 		<dependency>
 			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-core</artifactId>
+			<artifactId>hamcrest-platform</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -195,7 +195,7 @@
 		
 		<dependency>
 			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
+			<artifactId>mockito-platform</artifactId>
 			<scope>test</scope>
 		</dependency>
 		
@@ -348,7 +348,7 @@
 						<dependency>
 							<groupId>org.openmrs.tools</groupId>
 							<artifactId>openmrs-tools</artifactId>
-							<version>${openmrs.core.tools.version}</version>
+							<version>${openmrs.platform.tools.version}</version>
 						</dependency>
 					</dependencies>
 				</plugin>
