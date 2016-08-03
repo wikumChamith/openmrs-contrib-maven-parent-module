@@ -1,2 +1,2 @@
-# openmrs-module-base
-Base POM for any OpenMRS module
+# maven-parent-openmrs-module
+Parent POM for any OpenMRS module
